@@ -1,4 +1,5 @@
 require 'concurrent'
+require_relative 'sort'
 
 class ParallelQuickSort
   include Concurrent::Async
@@ -20,11 +21,18 @@ class ParallelQuickSort
     i = first
 
     while i < last
-      if arr[i][sorter_element] <= pivot[sorter_element]
+      if arr[i][sorter_element] < pivot[sorter_element]
         temp = arr[i]
         arr[i] = arr[p_index]
         arr[p_index] = temp
         p_index += 1
+      elsif arr[i][sorter_element] == pivot[sorter_element]
+        if arr[i][:first_name] < pivot[:first_name]
+          temp = arr[i]
+          arr[i] = arr[p_index]
+          arr[p_index] = temp
+          p_index += 1
+        end
       end
       i += 1
     end
