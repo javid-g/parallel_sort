@@ -1,3 +1,4 @@
+# classical quicksort implementation, setup to execute sequentially
 class QuickSort
   def quicksort(arr, first, last, sorter)
     if first < last
@@ -9,6 +10,8 @@ class QuickSort
     arr
   end
 
+  # partitioning is designed to sort by last_name passed in as the 'sorter' argument and
+  # secondary re-sort is based on first-name by default
   def partition(arr, first, last, sorter)
     sorter_element = sorter.to_sym
     pivot = arr[last]

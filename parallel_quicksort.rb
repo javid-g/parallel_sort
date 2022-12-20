@@ -1,6 +1,9 @@
 require 'concurrent'
 require_relative 'sort'
 
+# quicksort modified using the standard ruby concurrency methodology
+# via the concurrent-ruby gem
+
 class ParallelQuickSort
   include Concurrent::Async
 
@@ -14,6 +17,8 @@ class ParallelQuickSort
     arr
   end
 
+  # partitioning is designed to sort by last_name passed in as the 'sorter' argument and
+  # secondary re-sort is based on first-name by default
   def partition(arr, first, last, sorter)
     sorter_element = sorter.to_sym
     pivot = arr[last]
